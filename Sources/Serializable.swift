@@ -28,7 +28,7 @@ public typealias ResponseObject = [String: Any]
 
 public protocol Serializable {
 
-    init?(responseObject: [String: Any])
+    init?(responseObject: ResponseObject)
 
 }
 
