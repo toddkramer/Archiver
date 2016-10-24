@@ -1,6 +1,6 @@
 # Archiver
 
-![CocoaPods Version](https://cocoapod-badges.herokuapp.com/v/Archiver.swift/badge.png) [![Swift](https://img.shields.io/badge/swift-3-orange.svg?style=flat)](https://developer.apple.com/swift/) ![Platform](https://cocoapod-badges.herokuapp.com/p/Archiver.swift/badge.png) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+![CocoaPods Version](https://cocoapod-badges.herokuapp.com/v/Archiver.swift/badge.png) [![Swift](https://img.shields.io/badge/swift-3-orange.svg?style=flat)](https://developer.apple.com/swift/) ![Platform](https://cocoapod-badges.herokuapp.com/p/Archiver.swift/badge.png) [![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-4BC51D.svg?style=flat)](https://github.com/apple/swift-package-manager) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 A protocol-oriented framework for serializing and archiving Swift value types.
 
@@ -16,6 +16,35 @@ Documentation in progress!
 
 [Xcode]: https://developer.apple.com/xcode/downloads/
 
+### Swift Package Manager
+
+[Swift Package Manager][https://github.com/apple/swift-package-manager] is Apple's
+official package manager for Swift frameworks. To install with Swift Package
+Manager:
+
+1. Add Archiver to your Package.swift file:
+
+    ```
+    import PackageDescription
+
+    let package = Package(
+        name: "MyAppTarget",
+        dependencies: [
+            .Package(url: "https://github.com/toddkramer/Archiver",
+                     majorVersion: 0, minor: 4)
+        ]
+    )
+    ```
+
+2. Run `swift build`.
+
+3. Generate Xcode project:
+
+    ```
+    swift package generate-xcodeproj
+    ```
+
+
 ### Carthage
 
 [Carthage][] is a decentralized dependency manager for Cocoa projects. To
@@ -26,7 +55,7 @@ install Archiver with Carthage:
  2. Add Archiver to your Cartfile:
 
     ```
-    github "toddkramer/Archiver" ~> 0.3.0
+    github "toddkramer/Archiver" ~> 0.4.0
     ```
 
  3. Run `carthage update` and [add the appropriate framework][Carthage Usage].
@@ -50,7 +79,7 @@ Archiver with CocoaPods:
     ``` ruby
     use_frameworks!
 
-    pod 'Archiver.swift', '~> 0.3.0'
+    pod 'Archiver.swift', '~> 0.4.0'
     ```
 
  3. Run `pod install`.
