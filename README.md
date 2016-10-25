@@ -31,7 +31,7 @@ Manager:
         name: "MyAppTarget",
         dependencies: [
             .Package(url: "https://github.com/toddkramer/Archiver",
-                     majorVersion: 0, minor: 4)
+                     majorVersion: 0, minor: 5)
         ]
     )
     ```
@@ -55,7 +55,7 @@ install Archiver with Carthage:
  2. Add Archiver to your Cartfile:
 
     ```
-    github "toddkramer/Archiver" ~> 0.4.0
+    github "toddkramer/Archiver" ~> 0.5.0
     ```
 
  3. Run `carthage update` and [add the appropriate framework][Carthage Usage].
@@ -79,7 +79,7 @@ Archiver with CocoaPods:
     ``` ruby
     use_frameworks!
 
-    pod 'Archiver.swift', '~> 0.4.0'
+    pod 'Archiver.swift', '~> 0.5.0'
     ```
 
  3. Run `pod install`.
