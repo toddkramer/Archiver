@@ -26,19 +26,41 @@ import Foundation
 
 open class Archiver {
 
-    open static let `default` = Archiver()
+    public static let `default` = Archiver()
 
     static let bundleNameKey: String = kCFBundleNameKey as String
     static let targetName: String = Bundle.main.infoDictionary?[bundleNameKey] as? String ?? "UnknownApp"
     static let cachesDirectoryURL: URL? = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first
-    static let defaultDirectoryURL: URL? = cachesDirectoryURL?.appendingPathComponent("com.\(targetName).archives")
+    static let defaultDirectoryName: String = "com.\(targetName).archives"
+    static let defaultDirectoryURL: URL? = cachesDirectoryURL?.appendingPathComponent(defaultDirectoryName)
 
     let fileManager: FileManager = .default
 
-    public private(set) var rootDirectoryURL: URL?
+    public class var rootDirectoryURL: URL? {
+        get { return Archiver.default.rootDirectoryURL }
+        set { Archiver.default.rootDirectoryURL = newValue }
+    }
 
-    public init(rootDirectoryURL: URL? = defaultDirectoryURL) {
-        self.rootDirectoryURL = rootDirectoryURL
+    public class var archiveDirectoryName: String {
+        get { return Archiver.default.archiveDirectoryName }
+        set { Archiver.default.archiveDirectoryName = newValue }
+    }
+
+    var rootDirectoryURL: URL? = Archiver.cachesDirectoryURL {
+        didSet { resetArchiveDirectoryURL() }
+    }
+    var archiveDirectoryName: String = Archiver.defaultDirectoryName {
+        didSet { resetArchiveDirectoryURL() }
+    }
+
+    public private(set) var archiveDirectoryURL: URL?
+
+    public init(archiveDirectoryURL: URL? = defaultDirectoryURL) {
+        self.archiveDirectoryURL = archiveDirectoryURL
+    }
+
+    func resetArchiveDirectoryURL() {
+        archiveDirectoryURL = rootDirectoryURL?.appendingPathComponent(archiveDirectoryName)
     }
 
     func createDirectoryIfNeeded(atPath path: String) {
@@ -65,7 +87,7 @@ open class Archiver {
     }
 
     public func clearAll() {
-        guard let path = rootDirectoryURL?.path else { return }
+        guard let path = archiveDirectoryURL?.path else { return }
         deleteArchive(atPath: path)
     }
 

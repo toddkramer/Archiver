@@ -53,7 +53,7 @@ extension Archivable {
         return String(describing: self)
     }
     static var directoryURL: URL? {
-        return archiver.rootDirectoryURL?.appendingPathComponent(directoryName)
+        return archiver.archiveDirectoryURL?.appendingPathComponent(directoryName)
     }
     var fileURL: URL? {
         return Self.directoryURL?.appendingPathComponent("\(id).plist")
