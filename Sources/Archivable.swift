@@ -26,19 +26,11 @@ import Foundation
 
 public typealias Archive = [String: Any]
 
-public protocol ArchiveRepresentable {
-
-    var archiveValue: Archive { get }
-    init?(archive: Archive)
-
-}
-
-public protocol Archivable: ArchiveRepresentable, Serializable, UniquelyIdentifiable {
+public protocol Archivable: ArchiveRepresentable, UniquelyIdentifiable {
 
     static var archiver: Archiver { get }
     static var directoryName: String { get }
 
-    init?(responseObject: ResponseObject, shouldArchive: Bool)
     init?(resourceID: String)
 
     func storeArchive()
@@ -57,12 +49,6 @@ extension Archivable {
     }
     var fileURL: URL? {
         return Self.directoryURL?.appendingPathComponent("\(id).plist")
-    }
-
-    public init?(responseObject: ResponseObject, shouldArchive: Bool) {
-        self.init(responseObject: responseObject)
-        if !shouldArchive { return }
-        storeArchive()
     }
 
     public init?(resourceID: String) {
@@ -88,24 +74,6 @@ extension Archivable {
 
 extension Archivable {
 
-    public static func archivedCollection(from responseObject: ResponseObject, withKey key: String) -> [Self] {
-        guard let responseObjects = responseObject[key] as? [ResponseObject] else { return [Self]() }
-        return archivedCollection(from: responseObjects)
-    }
-
-    public static func archivedCollection(from responseObjects: [ResponseObject]) -> [Self] {
-        return responseObjects.flatMap { Self(responseObject: $0, shouldArchive: true) }
-    }
-
-    public static func unarchivedCollection(from archive: Archive, withKey key: String) -> [Self] {
-        guard let archives = archive[key] as? [Archive] else { return [Self]() }
-        return unarchivedCollection(from: archives)
-    }
-
-    public static func unarchivedCollection(from archives: [Archive]) -> [Self] {
-        return archives.flatMap { Self(archive: $0) }
-    }
-
     public static func unarchivedCollection(withIdentifiers identifiers: [String]) -> [Self] {
         return identifiers.flatMap { Self(resourceID: $0) }
     }
@@ -113,10 +81,6 @@ extension Archivable {
 }
 
 extension Array where Element: Archivable {
-
-    public var archiveValue: [Archive] {
-        return map { $0.archiveValue }
-    }
 
     public func storeArchives() {
         forEach { $0.storeArchive() }
