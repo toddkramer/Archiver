@@ -34,6 +34,11 @@ public protocol Serializable {
 
 extension Serializable {
 
+    public static func serialized(from responseObject: ResponseObject, withKey key: String) -> Self? {
+        guard let responseObject = responseObject[key] as? ResponseObject else { return nil }
+        return Self(responseObject: responseObject)
+    }
+
     public static func serializedCollection(from responseObject: ResponseObject, withKey key: String) -> [Self] {
         guard let responseObjects = responseObject[key] as? [ResponseObject] else { return [Self]() }
         return serializedCollection(from: responseObjects)

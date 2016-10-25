@@ -144,10 +144,10 @@
 			children = (
 				9B1961161DBB01E30099FE7C /* Archiver.swift */,
 				9B1961201DBB16DD0099FE7C /* Archivable.swift */,
+				9BF95F531DBEEA1E0032CE3D /* ArchiveRepresentable.swift */,
 				9BF95F4B1DBEE8620032CE3D /* Cachable.swift */,
 				9B19612A1DBB21240099FE7C /* Serializable.swift */,
 				9B1961251DBB173B0099FE7C /* UniquelyIdentifiable.swift */,
-				9BF95F531DBEEA1E0032CE3D /* ArchiveRepresentable.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";

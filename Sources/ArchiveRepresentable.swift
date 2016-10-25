@@ -33,6 +33,11 @@ public protocol ArchiveRepresentable {
 
 extension ArchiveRepresentable {
 
+    public static func unarchived(from archive: Archive, withKey key: String) -> Self? {
+        guard let archive = archive[key] as? Archive else { return nil }
+        return Self(archive: archive)
+    }
+
     public static func unarchivedCollection(from archive: Archive, withKey key: String) -> [Self] {
         guard let archives = archive[key] as? [Archive] else { return [Self]() }
         return unarchivedCollection(from: archives)
