@@ -4,6 +4,10 @@
 
 A protocol-oriented framework for serializing and archiving Swift value types.
 
+## Tutorial
+
+A full tutorial showing an example usage of Archiver is available [here](http://www.tekramer.com/serializing-archiving-structs-in-swift-with-archiver/).
+
 ## Usage
 
 Documentation in progress!
