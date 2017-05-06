@@ -341,7 +341,7 @@ install Archiver with Carthage:
  2. Add Archiver to your Cartfile:
 
     ```
-    github "toddkramer/Archiver" ~> 0.6.0
+    github "toddkramer/Archiver" ~> 0.6.1
     ```
 
  3. Run `carthage update` and [add the appropriate framework][Carthage Usage].
@@ -365,7 +365,7 @@ Archiver with CocoaPods:
     ``` ruby
     use_frameworks!
 
-    pod 'Archiver.swift', '~> 0.6.0'
+    pod 'Archiver.swift', '~> 0.6.1'
     ```
 
  3. Run `pod install`.
